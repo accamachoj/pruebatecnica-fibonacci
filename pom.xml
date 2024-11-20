@@ -91,6 +91,12 @@
 			<artifactId>sendgrid-java</artifactId>
 			<version>4.7.3</version> <!-- Verifica si hay una versión más reciente -->
 		</dependency>
+		<dependency>
+			<groupId>io.github.cdimascio</groupId>
+			<artifactId>dotenv-java</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
