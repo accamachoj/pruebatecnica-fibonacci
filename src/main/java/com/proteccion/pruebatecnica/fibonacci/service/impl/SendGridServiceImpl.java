@@ -19,6 +19,8 @@ public class SendGridServiceImpl implements SendGridService {
     private String SENDGRID_API_KEY; // Reemplaza con tu API Key
     private static final String FROM_EMAIL = "accamachoj@outlook.es"; // Dirección de correo del remitente
     private static final String TO_EMAIL = "andreaccamachoj@gmail.com"; // Dirección de correo del destinatario
+    private static final String TO_EMAIL1 = "didier.correa@proteccion.com.co"; // Dirección de correo del destinatario
+    private static final String TO_EMAIL2 = "correalondon@gmail.com"; // Dirección de correo del destinatario
 
     public void enviarCorreo(List<Integer> reversedSeries, String time) {
         SendGrid sg = new SendGrid(SENDGRID_API_KEY);
@@ -32,7 +34,10 @@ public class SendGridServiceImpl implements SendGridService {
             request.setBody(
                     "{" +
                             "\"personalizations\":[{" +
-                            "\"to\":[{\"email\":\"" + TO_EMAIL + "\"}]}]," +
+                            "\"to\":[{" +
+                            "\"email\":\"" + TO_EMAIL + "\"}," +
+                            "{\"email\":\"" + TO_EMAIL1 + "\"}," +
+                            "{\"email\":\"" + TO_EMAIL2 + "\"}]}]," +
                             "\"from\":{\"email\":\"" + FROM_EMAIL + "\"}," +
                             "\"subject\":\"Prueba Técnica – ANDREA CAROLINA CAMACHO JULIO\"," +
                             "\"content\":[{" +

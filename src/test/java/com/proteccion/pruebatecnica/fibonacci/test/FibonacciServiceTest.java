@@ -1,8 +1,10 @@
 package com.proteccion.pruebatecnica.fibonacci.test;
+
 import com.proteccion.pruebatecnica.fibonacci.dto.FibonacciSerieResponse;
 import com.proteccion.pruebatecnica.fibonacci.entity.FibonacciSerie;
 import com.proteccion.pruebatecnica.fibonacci.mapper.FibonacciSerieMapper;
 import com.proteccion.pruebatecnica.fibonacci.repository.FibonacciSerieRepository;
+import com.proteccion.pruebatecnica.fibonacci.service.SendGridService;
 import com.proteccion.pruebatecnica.fibonacci.service.impl.FibonacciServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,8 +22,8 @@ class FibonacciServiceTest {
     @Mock
     private FibonacciSerieRepository repository;
 
-//    @Mock
-//    private SendGridService sendGridService;
+    @Mock
+    private SendGridService sendGridService;
 
     @Mock
     private FibonacciSerieMapper fibonacciSerieMapper;
@@ -33,7 +35,7 @@ class FibonacciServiceTest {
     void setUp() {
         FibonacciSerie fibonacciSerie = new FibonacciSerie();
         MockitoAnnotations.openMocks(this);
-//        doNothing().when(sendGridService).enviarCorreo(any());
+        doNothing().when(sendGridService).enviarCorreo(any(),any());
         Mockito.when(repository.save(any(FibonacciSerie.class))).thenReturn(fibonacciSerie);
     }
 
@@ -48,7 +50,7 @@ class FibonacciServiceTest {
 
         // Assert
         assertEquals(expectedSeries, result);
-//        verify(sendGridService, times(1)).enviarCorreo(expectedSeries);
+        verify(sendGridService, times(1)).enviarCorreo(any(),any());
         verify(repository, times(1)).save(any(FibonacciSerie.class));
 
     }
@@ -94,4 +96,3 @@ class FibonacciServiceTest {
         verify(repository, times(1)).save(any(FibonacciSerie.class));
     }
 }
-

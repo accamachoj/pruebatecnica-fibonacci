@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -38,9 +40,13 @@ public class FibonacciServiceImpl implements FibonacciService {
 
     @Override
     public List<Integer> generateFibonacciCurrentTime() {
-        LocalTime localTime = LocalTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        ZoneId colombiaZone = ZoneId.of("America/Bogota");
 
+        ZonedDateTime colombiaTime = ZonedDateTime.now(colombiaZone);
+
+        LocalTime localTime = colombiaTime.toLocalTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         String formattedTime = localTime.format(formatter);
         return calculateFibonacci(formattedTime);
     }
@@ -82,7 +88,7 @@ public class FibonacciServiceImpl implements FibonacciService {
         series.add(seed2);
 
         for (int i = 2; i < count + 2; i++) {
-            series.add(series.get(i - 2) + series.get(i - 1));
+            series.add(series.get(i - 1) + series.get(i - 2));
         }
 
         Collections.reverse(series);
