@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  fibonacci_app:
+    image: fibonacci_app:1.0.0
+    container_name: fibonacciappcontainer
+    restart: always
+    environment:
+      - TZ=America/Bogota
+    ports:
+      - "5000:8080"
